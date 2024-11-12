@@ -5,14 +5,18 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": [
-        "apps/user/dist/**",
-        "apps/shortlink/dist/**"
+        "apps/users/dist/**",
+        "apps/links/dist/**"
       ]
     },
     "lint": {
       "dependsOn": ["^lint"]
     },
     "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "prod": {
       "cache": false,
       "persistent": true
     },
