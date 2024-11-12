@@ -17,6 +17,12 @@
 ## Node Version
 * '>=v18 <=v22'
 
+## ⚠️ Config ENV (.env)
+
+Para configurar o ambiente do projeto:
+
+1. **Renomeie o arquivo `.example.env` para `.env`**.
+   
 ## Docker
 
 ```bash
@@ -30,7 +36,11 @@ $ npm install
 
 ## Migrations
 ```bash
+# migrate for running dev
 $ npm run migrate:dev
+
+# migrate for deploy prod
+$ npm run migrate:prod
 ```
 ## Running the app
 
