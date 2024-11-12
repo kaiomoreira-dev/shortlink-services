@@ -2,7 +2,7 @@
   "name": "monorepo-root",
   "private": true,
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build --no-cache",
     "dev": "turbo run dev --parallel",
     "lint": "turbo lint",
     "test": "turbo test",
