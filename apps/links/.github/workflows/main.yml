@@ -1,6 +1,8 @@
 name: Run Unit Tests
 
-on: [push]
+on: 
+  push:
+    branches: [main]
 
 jobs:
   run-unit-tests:
@@ -14,10 +16,12 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-          
-      - run: npm ci
 
-      - run: npm run test
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Tests for Links API
+        run: npm run test --workspace=apps/links
         env:
           NODE_ENV: development
           DATABASE_URL: postgresql://default:1ebd9d49b83bd47e@localhost:5432/links_db?schema=public
