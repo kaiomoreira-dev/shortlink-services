@@ -10,7 +10,8 @@
     "test:users": "npm test --workspace apps/users",
     "test": "turbo test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "migrate:dev": "turbo migrate:dev"
+    "migrate:dev": "turbo migrate:dev",
+    "migrate:prod": "turbo migrate:prod"
   },
   "devDependencies": {
     "dotenv-cli": "^7.4.2",
