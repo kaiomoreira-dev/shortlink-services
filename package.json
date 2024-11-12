@@ -21,7 +21,8 @@
   },
   "packageManager": "npm@10.7.0",
   "workspaces": [
-    "apps/*",
+    "apps/links",
+    "apps/users",
     "packages/*"
   ],
   "dependencies": {

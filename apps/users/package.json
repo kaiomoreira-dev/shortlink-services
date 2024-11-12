@@ -4,9 +4,6 @@
   "description": "",
   "author": "",
   "private": true,
-  "workspaces": [
-    "apps/users"
-  ],
   "type": "commonjs",
   "license": "UNLICENSED",
   "engines": {
