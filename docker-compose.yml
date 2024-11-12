@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  postgresql:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=mainuser 
+      - POSTGRESQL_PASSWORD=mainpass
+
+  cache:
+    container_name: shortlink_cache
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis:/data

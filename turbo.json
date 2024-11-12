@@ -4,8 +4,10 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [
+        "apps/user/dist/**",
+        "apps/shortlink/dist/**"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -13,6 +15,14 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "test": {
+      "dependsOn": ["^test"],
+      "outputs": []
+    },
+    "migrate:dev": {
+      "dependsOn": ["^migrate:dev"],
+      "outputs": []
     }
   }
 }
