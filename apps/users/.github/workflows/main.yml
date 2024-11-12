@@ -1,6 +1,8 @@
 name: Run Unit Tests
 
-on: [push]
+on: 
+  push:
+    branches: [main]
 
 jobs:
   run-unit-tests:
@@ -14,15 +16,15 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-          
-      - run: npm ci
 
-      - run: npm run test
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Tests for Links
+        run: npm run test --workspace=apps/users # ou substitua 'apps/shortlink' pelo caminho correto
         env:
           NODE_ENV: development
-          DATABASE_URL: postgresql://default:1ebd9d49b83bd47e@localhost:5432/users_db?schema=public
-          JWT_EXPIRES_IN: 1d
-          JWT_PRIVATE_KEY: 9ab0f1edab31a2a241cf1e3225d14931
+          DATABASE_URL: postgresql://default:1ebd9d49b83bd47e@localhost:5432/links_db?schema=public
           JWT_PUBLIC_KEY: 62a4861e75e1c95b39c0469e3d18e666
           API_DEVELOPMENT_URL: http://localhost:3333/api
           API_PRODUCTION_URL: https://shortlink-api.up.railway.app
