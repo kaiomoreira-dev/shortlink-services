@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        project: [links, users]
+        project: [apps/links, apps/users]
 
     steps:
       - uses: actions/checkout@v3
@@ -26,6 +26,17 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-      
+
       - name: Run tests for ${{ matrix.project }}
-        run: npm test --workspace ${{ matrix.project }}
+        run: npm test --workspace '/apps/'${{ matrix.project }}
+        env:
+          NODE_ENV: development
+          DATABASE_URL: postgresql://default:1ebd9d49b83bd47e@localhost:5432/${{ matrix.project }}_db?schema=public
+          JWT_PUBLIC_KEY: 62a4861e75e1c95b39c0469e3d18e666
+          API_DEVELOPMENT_URL: http://localhost:3333/api
+          API_PRODUCTION_URL: https://shortlink-api.up.railway.app
+          REDIS_HOST: 127.0.0.1
+          REDIS_PORT: 6379
+          REDIS_DB: 0
+          REDIS_PASSWORD: 159753
+          REDIS_USERNAME: default
