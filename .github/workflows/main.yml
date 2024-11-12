@@ -12,6 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true 
+
     strategy:
       matrix:
         project: [apps/links, apps/users]
@@ -21,8 +24,9 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 20  # Garantindo que Node 20 está configurado
           cache: 'npm'
+      
 
       - name: Install dependencies
         run: npm install
