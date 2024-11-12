@@ -19,6 +19,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      
+      - name: Run Tests for Links API
+        run: npm run test --workspace=apps/links
 
       - name: Run Tests for Links API
         run: npm run test --workspace=apps/links

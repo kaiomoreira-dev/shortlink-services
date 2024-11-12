@@ -9,10 +9,7 @@ interface EditLinkRequest {
   newOriginalUrl: string
 }
 
-export type EditLinksResponse = Either<
-  ResourceNotFoundError,
-  { link: Link }
->
+export type EditLinksResponse = Either<ResourceNotFoundError, { link: Link }>
 @Injectable()
 export class EditLinksUseCase {
   constructor(private linkRepository: LinksRepository) {}

@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Run linter for ${{ matrix.project }}
+        run: npm run lint --workspace=${{ matrix.project }}
+
       - name: Run tests for ${{ matrix.project }}
         run: npm test --workspace ${{ matrix.project }}
         env:

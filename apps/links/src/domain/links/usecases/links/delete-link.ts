@@ -13,9 +13,7 @@ type DeleteLinksResponse = Either<ResourceNotFoundError, boolean>
 export class DeleteLinksUseCase {
   constructor(private linkRepository: LinksRepository) {}
 
-  async execute({
-    linkId,
-  }: LinksRequest): Promise<DeleteLinksResponse> {
+  async execute({ linkId }: LinksRequest): Promise<DeleteLinksResponse> {
     // buscar link pelo id
     const link = await this.linkRepository.findById(linkId)
 
