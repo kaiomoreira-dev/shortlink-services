@@ -6,6 +6,8 @@
     "dev": "turbo run dev --parallel",
     "prod": "turbo run prod --parallel",
     "lint": "turbo lint",
+    "test:links": "npm test --workspace=apps/links",
+    "test:users": "npm test --workspace=apps/users",
     "test": "turbo test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "migrate:dev": "turbo migrate:dev"
