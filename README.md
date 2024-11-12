@@ -21,7 +21,7 @@
 
 Para configurar o ambiente do projeto:
 
-1. **Renomeie o arquivo `.example.env` para `.env`**.
+1. **Renomeie o arquivo `.example.env` para `.env` em cada dominio 'shortlink e user'**.
    
 ## Docker
 
