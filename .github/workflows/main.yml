@@ -30,7 +30,7 @@ jobs:
       - name: Run linter for ${{ matrix.project }}
         run: npm run lint --workspace=${{ matrix.project }}
 
-      - name: Run tests for ${{ matrix.project }}
+      - name: Run tests unit for ${{ matrix.project }}
         run: npm test --workspace ${{ matrix.project }}
         env:
           NODE_ENV: development

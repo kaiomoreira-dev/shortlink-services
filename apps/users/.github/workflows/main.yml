@@ -22,9 +22,6 @@ jobs:
 
       - name: Run Tests for Users API
         run: npm run test --workspace=apps/users
-
-      - name: Run Tests for Users API
-        run: npm run test --workspace=apps/users
         env:
           NODE_ENV: development
           DATABASE_URL: postgresql://default:1ebd9d49b83bd47e@localhost:5432/users_db?schema=public
