@@ -17,7 +17,7 @@
 ## Node Version
 * '>=v18 <=v22'
 
-## ⚠️ Config ENV (.env)
+## Config (.env)
 
 Para configurar o ambiente do projeto:
 
