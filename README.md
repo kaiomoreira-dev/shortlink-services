@@ -14,6 +14,15 @@
 
 * Incorporar filas para processamento assíncrono de cliques: Usar filas de mensagens para contabilizar cliques de forma assíncrona permite lidar com um volume alto de acessos sem impactar a performance do sistema principal, aumentando a capacidade de processamento.
 
+
+
+## Pré-requisitos
+* Este projeto é uma aplicação que utiliza [Docker], [Node.js], [Turbo] e [Prisma] para gerenciar banco de dados. Abaixo estão os passos para rodar a aplicação localmente.
+
+- **Docker**: Para rodar a aplicação em containers.
+- **Node.js**: Certifique-se de ter a versão recomendada instalada. Recomendamos usar o [Node 18+].
+- **Nota**: O [Turbo] está incluído como dependência de desenvolvimento. Não é necessário instalar o Turbo globalmente.
+
 ## Node Version
 * '>=v18 <=v22'
 
