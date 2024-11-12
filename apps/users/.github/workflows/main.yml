@@ -20,7 +20,7 @@ jobs:
       - run: npm run test
         env:
           NODE_ENV: development
-          DATABASE_URL: postgresql://default:1ebd9d49b83bd47e@localhost:5432/shortlink_db?schema=public
+          DATABASE_URL: postgresql://default:1ebd9d49b83bd47e@localhost:5432/users_db?schema=public
           JWT_EXPIRES_IN: 1d
           JWT_PRIVATE_KEY: 9ab0f1edab31a2a241cf1e3225d14931
           JWT_PUBLIC_KEY: 62a4861e75e1c95b39c0469e3d18e666
