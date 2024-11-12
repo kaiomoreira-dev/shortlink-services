@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        project: [links, user]
+        project: [links, users]
 
     steps:
       - name: Checkout repository
