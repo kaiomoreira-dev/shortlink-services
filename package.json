@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo build --no-cache",
     "dev": "turbo run dev --parallel",
+    "prod": "turbo run prod --parallel",
     "lint": "turbo lint",
     "test": "turbo test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
