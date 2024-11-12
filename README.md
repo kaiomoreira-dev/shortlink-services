@@ -18,43 +18,41 @@
 * '>=v18 <=v22'
 
 ## Config (.env)
-
 Para configurar o ambiente do projeto:
 
 1. **Renomeie o arquivo `.example.env` para `.env` em cada dominio 'em /apps shortlink e user'**.
    
 ## Docker
-
 ```bash
+# Start the application using Docker:
 $ docker compose up -d
 ```
 
 ## Dependecy Installation
 ```bash
+# Install project dependencies:
 $ npm install
 ```
 
 ## Migrations
 ```bash
-# migrate for running dev
+# Start the app in development mode:
 $ npm run migrate:dev
 
-# migrate for deploy prod
+# Start the app in production mode:
 $ npm run migrate:prod
 ```
 ## Running the app
-
 ```bash
-# dev mode
+# Start the app in development mode:
 $ npm run dev
 
-# prod mode
+# Start the app in production mode:
 $ npm run prod
 ```
 ## Test
-
 ```bash
-# test units
+# Run unit tests:
 $ npm run test
 ```
 
