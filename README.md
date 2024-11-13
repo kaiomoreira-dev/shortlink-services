@@ -15,11 +15,13 @@
 * Incorporar filas para processamento assíncrono de cliques: Usar filas de mensagens para contabilizar cliques de forma assíncrona permite lidar com um volume alto de acessos sem impactar a performance do sistema principal, aumentando a capacidade de processamento.
 
 ## Pré-requisitos
-* Este projeto é uma aplicação que utiliza [Docker], [Node.js], [Turbo] e [Prisma] para gerenciar banco de dados. Abaixo estão os passos para rodar a aplicação localmente.
+* Este projeto é uma aplicação que utiliza [Docker], [Node.js] e [Prisma] para gerenciar banco de dados. Abaixo estão os passos para rodar a aplicação localmente.
 
 - **Docker**: Para rodar a aplicação em containers.
 - **Node.js**: Certifique-se de ter a versão recomendada instalada. Recomendamos usar o [Node 18+].
-- **Nota**: O [Turbo] está incluído como dependência de desenvolvimento. Não é necessário instalar o Turbo globalmente.
+
+## Turborepo
+* Este projeto utiliza o Turborepo para gerenciar a estrutura como um monorepo, permitindo o gerenciamento de múltiplos serviços e pacotes em um único repositório. Isso facilita o desenvolvimento, manutenção e escalabilidade dos serviços ao compartilhar configurações, scripts e bibliotecas entre os módulos do projeto.
 
 ## API Endpoints
 
@@ -62,7 +64,7 @@
 ## Config (.env)
 Para configurar o ambiente do projeto:
 
-1. **Renomeie o arquivo `.example.env` para `.env` em cada dominio dentro de /apps 'links e users'**.
+1. **Renomeie o arquivo `.example.env` para `.env` em cada serviço dentro de /apps 'links e users'**.
    
 ## Docker
 ```bash
