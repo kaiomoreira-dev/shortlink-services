@@ -12,6 +12,8 @@ import { z } from 'zod'
 import { HttpUsersPresenter } from '../../presenters/http-users-presenter'
 import { RegisterUserUsecase } from '@/domain/users/usecases/users/register-user-usecase'
 import { UserAlreadyExistsError } from '@/domain/users/usecases/errors/user-already-exists-error'
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { RegisterUserDto } from '@/infra/dtos/register-user.dto'
 
 const registerUserBodySchema = z.object({
   name: z.string(),
@@ -20,7 +22,7 @@ const registerUserBodySchema = z.object({
 })
 
 type RegisterUserBody = z.infer<typeof registerUserBodySchema>
-
+@ApiTags('Users')
 @Controller('/users')
 export class RegisterUserController {
   constructor(private registerUserUsecase: RegisterUserUsecase) {}
@@ -28,6 +30,11 @@ export class RegisterUserController {
   @Post()
   @HttpCode(201)
   @UsePipes(new ZodValidationPipe(registerUserBodySchema))
+  @ApiOperation({ summary: 'Registrar um novo usuário' })
+  @ApiBody({ type: RegisterUserDto })
+  @ApiResponse({ status: 201, description: 'Usuário registrado com sucesso.' })
+  @ApiResponse({ status: 409, description: 'Usuário já existe.' })
+  @ApiResponse({ status: 400, description: 'Dados inválidos.' })
   async create(@Body() body: RegisterUserBody) {
     const { name, email, password } = body
 

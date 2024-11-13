@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { EnvService } from './env/env.service'
 import { connectToSentry } from './http/monitoring/sentry/sentry'
-
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
 
@@ -10,6 +10,16 @@ async function bootstrap() {
 
   // Configura o Sentry
   connectToSentry(configService.get('SENTRY_DNS'))
+
+  // Configura o Swagger
+  const config = new DocumentBuilder()
+    .setTitle('Links API')
+    .setDescription('The links API description')
+    .setVersion('1.0')
+    .addTag('links')
+    .build()
+  const documentFactory = () => SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('api', app, documentFactory)
 
   // Habilita o CORS com configurações
   app.enableCors({
