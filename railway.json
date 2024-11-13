@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "services": [
+      {
+        "name": "links-api", 
+        "type": "node", 
+        "root": "/apps/links", 
+        "build": "npm install && npm run migrate:dev && npm run build", 
+        "start": "npm run start:prod"
+      }
+    ]
+  }
+  
