@@ -6,6 +6,14 @@ import { UserPayload } from '@/infra/auth/jwt-strategy'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { Public } from '@/infra/auth/public'
 import { CreateLinksUseCase } from '@/domain/links/usecases/links/create-short-link'
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger'
+import { CreateLinkDto } from '@/infra/dtos/create-link.dto'
 
 const createLinkSchema = z.object({
   originalUrl: z.string().url().min(1),
@@ -15,12 +23,20 @@ const bodyValidationPipe = new ZodValidationPipe(createLinkSchema)
 
 type CreateLinkSchema = z.infer<typeof createLinkSchema>
 
+@ApiTags('CreateLink')
 @Controller('/links')
 @Public()
 export class CreateLinksController {
   constructor(private createLinkUseCase: CreateLinksUseCase) {}
 
   @Post()
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Create a shortened link',
+    description: 'Creates a new shortened link for the given original URL.',
+  })
+  @ApiResponse({ status: 201, description: 'Link successfully created.' })
+  @ApiBody({ type: CreateLinkDto })
   async handle(
     @Body(bodyValidationPipe) body: CreateLinkSchema,
     @CurrentUser() user?: UserPayload,

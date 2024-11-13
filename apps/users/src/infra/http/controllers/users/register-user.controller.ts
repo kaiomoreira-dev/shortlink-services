@@ -22,7 +22,7 @@ const registerUserBodySchema = z.object({
 })
 
 type RegisterUserBody = z.infer<typeof registerUserBodySchema>
-@ApiTags('Users')
+@ApiTags('RegisterUser')
 @Controller('/users')
 export class RegisterUserController {
   constructor(private registerUserUsecase: RegisterUserUsecase) {}

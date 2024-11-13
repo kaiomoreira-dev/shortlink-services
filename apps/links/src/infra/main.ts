@@ -17,6 +17,7 @@ async function bootstrap() {
     .setDescription('The links API description')
     .setVersion('1.0')
     .addTag('links')
+    .addBearerAuth()
     .build()
   const documentFactory = () => SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, documentFactory)
@@ -26,7 +27,6 @@ async function bootstrap() {
     origin: '*', // Define os domínios permitidos, ou use '*' para todos os domínios
     methods: 'GET,POST,PUT,DELETE,OPTIONS,PATCH', // Métodos HTTP permitidos
     allowedHeaders: 'Content-Type, Authorization', // Headers permitidos
-    credentials: true, // Para permitir cookies
   })
 
   const port = configService.get('PORT')
