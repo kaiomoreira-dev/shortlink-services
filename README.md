@@ -23,10 +23,6 @@
 
 ## API Endpoints
 
-### Swagger
-* Users: http://localhost:3333/api#/
-* Links: http://localhost:3335/api#/
-  
 ### **1. Registrar Usuário**
    - **POST /auth/register**
    - Registra um novo usuário com e-mail e senha.
@@ -54,6 +50,11 @@
 ### **7. Deletar Link (Autenticado)**
    - **DELETE /links/:id**
    - Exclui logicamente um link encurtado.
+
+## Swagger UI
+
+- **Users API**: [http://localhost:3333/api#/](http://localhost:3333/api#/)
+- **Links API**: [http://localhost:3335/api#/](http://localhost:3335/api#/)
 
 ## Node Version
 * '>=v18 <=v22'
