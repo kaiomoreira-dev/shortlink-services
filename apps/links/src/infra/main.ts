@@ -6,6 +6,13 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
 
+  // Habilita o CORS com configurações
+  app.enableCors({
+    origin: '*', // Define os domínios permitidos, ou use '*' para todos os domínios
+    methods: 'GET,POST,PUT,DELETE,OPTIONS,PATCH', // Métodos HTTP permitidos
+    allowedHeaders: 'Content-Type, Authorization', // Headers permitidos
+  })
+
   const configService = app.get(EnvService)
 
   // Configura o Sentry
@@ -21,13 +28,6 @@ async function bootstrap() {
     .build()
   const documentFactory = () => SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, documentFactory)
-
-  // Habilita o CORS com configurações
-  app.enableCors({
-    origin: '*', // Define os domínios permitidos, ou use '*' para todos os domínios
-    methods: 'GET,POST,PUT,DELETE,OPTIONS,PATCH', // Métodos HTTP permitidos
-    allowedHeaders: 'Content-Type, Authorization', // Headers permitidos
-  })
 
   const port = configService.get('PORT')
 
