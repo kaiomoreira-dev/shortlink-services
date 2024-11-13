@@ -2,15 +2,21 @@ import { InMemoryLinksRepository } from 'test/repositories/in-memory-links-repos
 import { faker } from '@faker-js/faker'
 import { FetchLinkUseCase } from './fetch-link'
 import { CreateLinksUseCase } from './create-short-link'
+import { MockEnvService } from 'test/env/faker-env'
 
 let inMemoryLinksRepository: InMemoryLinksRepository
 let stu: FetchLinkUseCase
+let inMemoryEnvService: MockEnvService
 let createLinksUseCase: CreateLinksUseCase
 
 describe('Fetch Short Link', () => {
   beforeEach(() => {
     inMemoryLinksRepository = new InMemoryLinksRepository()
-    createLinksUseCase = new CreateLinksUseCase(inMemoryLinksRepository)
+    inMemoryEnvService = new MockEnvService()
+    createLinksUseCase = new CreateLinksUseCase(
+      inMemoryLinksRepository,
+      inMemoryEnvService,
+    )
     stu = new FetchLinkUseCase(inMemoryLinksRepository)
   })
 

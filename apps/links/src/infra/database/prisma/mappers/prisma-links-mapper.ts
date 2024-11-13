@@ -1,6 +1,5 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { Link } from '@/domain/links/enterprise/entities/link'
-import { ShortUrl } from '@/domain/links/enterprise/entities/value-objects/short-code-link'
 import { Prisma, PrismaClient, Link as PrismaLink } from '.prisma/client'
 
 export class PrismaLinkMapper {
@@ -9,13 +8,14 @@ export class PrismaLinkMapper {
     return Link.create(
       {
         originalUrl: raw.originalUrl,
-        shortUrl: ShortUrl.create(raw.shortUrl),
+        shortUrl: raw.shortUrl,
         clicks: Number(raw.clicks),
         userId: raw.userId ? new UniqueEntityId(raw.userId) : null,
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,
         deletedAt: raw.deletedAt,
       },
+      null,
       new UniqueEntityId(raw.id),
     )
   }
@@ -24,7 +24,7 @@ export class PrismaLinkMapper {
     return {
       id: link.id.toString(),
       originalUrl: link.originalUrl,
-      shortUrl: link.shortUrl.value,
+      shortUrl: link.shortUrl,
       clicks: link.clicks,
       userId: link.userId?.toString(),
       createdAt: link.createdAt,

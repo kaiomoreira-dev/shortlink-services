@@ -3,15 +3,21 @@ import { DeleteLinksUseCase } from './delete-link'
 import { faker } from '@faker-js/faker'
 import { ResourceNotFoundError } from '../../../../core/errors/errors/resource-not-found-error'
 import { CreateLinksUseCase } from './create-short-link'
+import { MockEnvService } from 'test/env/faker-env'
 
 let inMemoryLinksRepository: InMemoryLinksRepository
+let inMemoryEnvService: MockEnvService
 let stu: DeleteLinksUseCase
 let createLinksUseCase: CreateLinksUseCase
 
 describe('Delete Short Link', () => {
   beforeEach(() => {
     inMemoryLinksRepository = new InMemoryLinksRepository()
-    createLinksUseCase = new CreateLinksUseCase(inMemoryLinksRepository)
+    inMemoryEnvService = new MockEnvService()
+    createLinksUseCase = new CreateLinksUseCase(
+      inMemoryLinksRepository,
+      inMemoryEnvService,
+    )
     stu = new DeleteLinksUseCase(inMemoryLinksRepository)
   })
 

@@ -1,11 +1,10 @@
 import { Entity } from '@/core/entities/entity'
-import { ShortUrl } from './value-objects/short-code-link'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
 
 export interface LinkProps {
   originalUrl: string
-  shortUrl: ShortUrl
+  shortUrl: string
   userId?: UniqueEntityId | null
   clicks: number
   createdAt: Date
@@ -14,7 +13,7 @@ export interface LinkProps {
 }
 
 export class Link extends Entity<LinkProps> {
-  get shortUrl(): ShortUrl {
+  get shortUrl(): string {
     return this.props.shortUrl
   }
 
@@ -71,8 +70,30 @@ export class Link extends Entity<LinkProps> {
     this.props.updatedAt = new Date()
   }
 
+  private static generateShortUrl(
+    originalUrl: string,
+    baseUrl: string,
+  ): string {
+    let shortUrl = ''
+    let shortCode = ''
+
+    if (originalUrl.includes(baseUrl)) {
+      shortUrl = originalUrl
+    } else {
+      const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+      for (let i = 0; i < 6; i++) {
+        shortCode += chars.charAt(Math.floor(Math.random() * chars.length))
+      }
+      shortUrl = `${baseUrl}/${shortCode}`
+    }
+
+    return shortUrl
+  }
+
   static create(
     props: Optional<LinkProps, 'createdAt' | 'clicks' | 'shortUrl'>,
+    baseUrl?: string | null, // Passa a URL base para gerar o shortUrl
     id?: UniqueEntityId,
   ) {
     const link = new Link(
@@ -80,7 +101,8 @@ export class Link extends Entity<LinkProps> {
         ...props,
         createdAt: props.createdAt ?? new Date(),
         clicks: props.clicks ?? 0,
-        shortUrl: props.shortUrl ?? ShortUrl.create(props.originalUrl), // criar env variavel mais pra frente
+        shortUrl:
+          props.shortUrl ?? Link.generateShortUrl(props.originalUrl, baseUrl),
         userId: props.userId ?? null,
         deletedAt: props.deletedAt ?? null,
         updatedAt: props.updatedAt ?? null,

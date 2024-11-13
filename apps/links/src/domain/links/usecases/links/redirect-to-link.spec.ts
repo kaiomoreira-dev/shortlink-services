@@ -5,16 +5,19 @@ import { ResourceNotFoundError } from '@/core/errors/errors/resource-not-found-e
 import { CreateLinksUseCase } from './create-short-link'
 
 let inMemoryLinksRepository: InMemoryLinksRepository
-let mockEnv: MockEnvService
+let inMemoryEnvService: MockEnvService
 let stu: RedirectToLinkUseCase
 let createLinksUseCase: CreateLinksUseCase
 
 describe('Redirect To Link', () => {
   beforeEach(() => {
     inMemoryLinksRepository = new InMemoryLinksRepository()
-    mockEnv = new MockEnvService()
-    createLinksUseCase = new CreateLinksUseCase(inMemoryLinksRepository)
-    stu = new RedirectToLinkUseCase(inMemoryLinksRepository, mockEnv)
+    inMemoryEnvService = new MockEnvService()
+    createLinksUseCase = new CreateLinksUseCase(
+      inMemoryLinksRepository,
+      inMemoryEnvService,
+    )
+    stu = new RedirectToLinkUseCase(inMemoryLinksRepository, inMemoryEnvService)
   })
 
   it('should be redirect to link by short code', async () => {
@@ -25,7 +28,7 @@ describe('Redirect To Link', () => {
 
     if (result.isRight()) {
       const resultRedirect = await stu.execute({
-        shortCode: result.value.link.shortUrl.value,
+        shortCode: result.value.link.shortUrl,
       })
 
       expect(resultRedirect.isRight()).toBeTruthy()
@@ -45,7 +48,7 @@ describe('Redirect To Link', () => {
 
     if (result.isRight()) {
       const resultFindLink = await stu.execute({
-        shortCode: result.value.link.shortUrl.value,
+        shortCode: result.value.link.shortUrl,
       })
 
       expect(resultFindLink.isRight()).toBeTruthy()

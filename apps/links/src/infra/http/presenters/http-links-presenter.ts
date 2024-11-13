@@ -5,7 +5,7 @@ export class HttpLinksPresenter {
     return {
       id: link.id.toString(),
       originalUrl: link.originalUrl,
-      shortUrl: link.shortUrl.value,
+      shortUrl: link.shortUrl,
       clicks: link.clicks,
       usersId: link.userId?.toString(),
       createdAt: link.createdAt,

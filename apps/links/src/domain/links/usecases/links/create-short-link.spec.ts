@@ -1,13 +1,16 @@
 import { InMemoryLinksRepository } from 'test/repositories/in-memory-links-repository'
 import { CreateLinksUseCase } from './create-short-link'
+import { MockEnvService } from 'test/env/faker-env'
 
 let inMemoryLinksRepository: InMemoryLinksRepository
+let inMemoryEnvService: MockEnvService
 let stu: CreateLinksUseCase
 
 describe('Create Short Link', () => {
   beforeEach(() => {
     inMemoryLinksRepository = new InMemoryLinksRepository()
-    stu = new CreateLinksUseCase(inMemoryLinksRepository)
+    inMemoryEnvService = new MockEnvService()
+    stu = new CreateLinksUseCase(inMemoryLinksRepository, inMemoryEnvService)
   })
 
   it('should be able to create a short link with user', async () => {
@@ -24,8 +27,8 @@ describe('Create Short Link', () => {
       expect(result.value.link.userId?.toValue()).toEqual(userId)
       expect(result.value.link.clicks).toEqual(0)
       expect(result.value.link.originalUrl).toEqual(originalUrl)
-      expect(typeof result.value.link.shortUrl.value).toEqual('string')
-      expect(result.value.link.shortUrl.value).not.toBeNull()
+      expect(typeof result.value.link.shortUrl).toEqual('string')
+      expect(result.value.link.shortUrl).not.toBeNull()
     }
   })
 
@@ -40,8 +43,8 @@ describe('Create Short Link', () => {
       expect(createLink.value.link.userId).toBeNull()
       expect(createLink.value.link.clicks).toEqual(0)
       expect(createLink.value.link.originalUrl).toEqual(originalUrl)
-      expect(typeof createLink.value.link.shortUrl.value).toEqual('string')
-      expect(createLink.value.link.shortUrl.value).not.toBeNull()
+      expect(typeof createLink.value.link.shortUrl).toEqual('string')
+      expect(createLink.value.link.shortUrl).not.toBeNull()
     }
   })
 })
