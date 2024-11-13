@@ -14,14 +14,46 @@
 
 * Incorporar filas para processamento assíncrono de cliques: Usar filas de mensagens para contabilizar cliques de forma assíncrona permite lidar com um volume alto de acessos sem impactar a performance do sistema principal, aumentando a capacidade de processamento.
 
-
-
 ## Pré-requisitos
 * Este projeto é uma aplicação que utiliza [Docker], [Node.js], [Turbo] e [Prisma] para gerenciar banco de dados. Abaixo estão os passos para rodar a aplicação localmente.
 
 - **Docker**: Para rodar a aplicação em containers.
 - **Node.js**: Certifique-se de ter a versão recomendada instalada. Recomendamos usar o [Node 18+].
 - **Nota**: O [Turbo] está incluído como dependência de desenvolvimento. Não é necessário instalar o Turbo globalmente.
+
+## API Endpoints
+
+### Swagger
+* Users: http://localhost:3333/api#/
+* Links: http://localhost:3335/api#/
+  
+### **1. Registrar Usuário**
+   - **POST /auth/register**
+   - Registra um novo usuário com e-mail e senha.
+
+### **2. Autenticar Usuário**
+   - **POST /auth/login**
+   - Realiza login e retorna um token Bearer para autenticação.
+
+### **3. Criar Link Encurtado**
+   - **POST /links**
+   - Cria um novo link encurtado. Pode ser autenticado ou não.
+
+### **4. Redirecionar para o URL Original**
+   - **GET /:shortCode**
+   - Redireciona para o URL original usando o código curto.
+
+### **5. Listar Links Encurtados (Autenticado)**
+   - **GET /links**
+   - Lista links do usuário autenticado, incluindo cliques.
+
+### **6. Atualizar Link (Autenticado)**
+   - **PATCH /links/:id**
+   - Atualiza o URL original de um link encurtado.
+
+### **7. Deletar Link (Autenticado)**
+   - **DELETE /links/:id**
+   - Exclui logicamente um link encurtado.
 
 ## Node Version
 * '>=v18 <=v22'
