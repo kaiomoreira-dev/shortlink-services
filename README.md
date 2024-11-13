@@ -24,11 +24,11 @@
 ## API Endpoints
 
 ### **1. Registrar Usuário**
-   - **POST /auth/register**
+   - **POST /users**
    - Registra um novo usuário com e-mail e senha.
 
 ### **2. Autenticar Usuário**
-   - **POST /auth/login**
+   - **POST /sessions**
    - Realiza login e retorna um token Bearer para autenticação.
 
 ### **3. Criar Link Encurtado**
