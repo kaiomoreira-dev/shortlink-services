@@ -32,6 +32,8 @@ export class EditLinksUseCase {
     // editar o link
     link.originalUrl = newOriginalUrl
 
+    link.clicks = 0
+
     const updatedLink = await this.linkRepository.save(link)
 
     return right({ link: updatedLink })

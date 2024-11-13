@@ -21,6 +21,10 @@ export class Link extends Entity<LinkProps> {
     return this.props.clicks
   }
 
+  set clicks(clicks: number) {
+    this.props.clicks = clicks
+  }
+
   get originalUrl(): string {
     return this.props.originalUrl
   }
